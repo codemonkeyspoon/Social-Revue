@@ -15,6 +15,11 @@ body {
     background-color: #474350;
 }
 
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 h1, h2, h3, h4, h5, h6 {
     margin: 40px 0;
     text-align: center;
@@ -24,9 +29,10 @@ p {
     text-align: center;
 }
 
-nav ul li a {
+header nav ul {
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
 }
 
 a {
@@ -34,13 +40,16 @@ a {
     text-decoration: none;
 }
 
-img, li a span {
+li a img, li a span {
     align-items: center;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     margin: 1vh;
 }
 
 footer {
+    background-color: #66c3ff;
     margin-top: 50px;
+    padding: 0.5vh;
 }
