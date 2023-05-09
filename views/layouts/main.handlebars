@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Socials Revue App</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>
+        <a href="/">Social Revue</a>
+      </h1>
+      <nav>
+        {{#if loggedIn}}
+        <a href="/dashboard">Dashboard</a>
+        <button id="logout" class="btn-no-style">Logout</button>
+        {{else}}
+        <a href="/login">Login</a>
+        {{/if}}
+      </nav>
+    </header>
+    <main>
+      {{{ body }}}
+    </main>
+    <footer>
+      Thanks for checking out Social Revue!
+      <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Reviews</a></li>
+          <li><a href="#">Add a Review</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+    </footer>
+  </div>
+  
+  {{#if loggedIn}}
+  <script src="/javascripts/logout.js"></script>
+  {{/if}}
+</body>
+
+</html>
