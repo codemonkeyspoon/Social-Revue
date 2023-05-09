@@ -3,8 +3,10 @@
 
 :root {
     --gray: #474350;
+    --lightgray: #AAA;
     --wheat: #EFD6AC;
-    --blue: #66C3FF;
+    --lightblue: #66C3FF;
+    --darkblue: #0b77be;
     --red: #E83151;
     --green: #598B2C;
   }
@@ -19,8 +21,12 @@ ul, ol {
     list-style: none;
 }
 
+li > a {
+    color: var(--lightblue);
+}
+
 body {
-    background-color: var(--gray);
+    background-color: var(--lightgray);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -38,9 +44,14 @@ header nav ul {
     justify-content: space-evenly;
 }
 
-a {
-    color: var(--blue);
+nav > ul > li > a {
+    color: var(--darkblue);
     text-decoration: none;
+}
+
+main section {
+    background-color: var(--gray);
+    border-radius: 20px;
 }
 
 li a img, li a span {
@@ -52,7 +63,7 @@ li a img, li a span {
 }
 
 footer {
-    background-color: var(--blue);
+    background-color: var(--lightblue);
     margin-top: 50px;
     padding: 0.5vh;
 }
