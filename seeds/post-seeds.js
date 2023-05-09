@@ -24,7 +24,6 @@ const postSeeds = async () => {
   // insert posts into database
   await Post.bulkCreate(posts);
   console.log('Post seeds have been planted!');
-  process.exit(0);
 };
 
-postSeeds();
+module.exports = postSeeds;

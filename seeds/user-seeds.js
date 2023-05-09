@@ -13,11 +13,9 @@ const seedUsers = async () => {
   }));
 
   // Create the users in the database
-  await sequelize.sync({ force: true });
   await User.bulkCreate(userData);
 
   console.log('Users seeded successfully!');
-  process.exit(0);
 };
 
-seedUsers();
+module.exports = seedUsers;

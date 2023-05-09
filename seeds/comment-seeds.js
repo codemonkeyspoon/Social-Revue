@@ -25,7 +25,6 @@ const commentSeeds = async () => {
   // insert comments into database
   await Comment.bulkCreate(comments);
   console.log('Comment seeds have been planted!');
-  process.exit(0);
 };
 
-commentSeeds();
+module.exports = commentSeeds;
