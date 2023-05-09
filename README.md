@@ -14,17 +14,17 @@ The Socials Revue App is a web application that allows users to create an accoun
 * View all reviews by clicking the "View Reviews" button.
 * Delete a review by clicking the "Delete" button next to the review you want to delete.
 # Technologies Used
-* Node.js
-* Express
-* DBeaver
-* Sequalize
-* MySql2
-* Bcrypt
-* Express-Sessions
-* Express-Handlebars
-* DotEnv
+* **Node.js**
+* **Express**
+* **DBeaver**
+* **Sequalize**
+* **MySql2**
+* **Bcrypt**
+* **Express-Sessions**
+* **Express-Handlebars**
+* **DotEnv**
 # Credits
-This application was developed by Copyright (c) 2023, Team: Slo-Bots. @codemonkeyspoon @AlexC3105 @trentstanley92 @tylervanderstaay @CollJH2K
+This application was developed by Copyright (c) 2023, Team: **Slo-Bots**. @codemonkeyspoon @AlexC3105 @trentstanley92 @tylervanderstaay @CollJH2K
 If you have any questions or feedback, please contact Social-Revue@email.com.
 
 # License
