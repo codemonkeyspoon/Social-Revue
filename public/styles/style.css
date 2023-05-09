@@ -1,3 +1,6 @@
+/* Import Roboto from Google Fonts */
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+
 :root {
     --gray: #474350;
     --wheat: #EFD6AC;
@@ -5,9 +8,6 @@
     --red: #E83151;
     --green: #598B2C;
   }
-
-/* Import Roboto from Google Fonts */
-@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 
 /* Universal selector */
 * {
@@ -20,7 +20,7 @@ ul, ol {
 }
 
 body {
-    background-color: #474350;
+    background-color: var(--gray);
 }
 
 .wrapper {
@@ -44,7 +44,7 @@ header nav ul {
 }
 
 a {
-    color: #66c3ff;
+    color: var(--blue);
     text-decoration: none;
 }
 
@@ -57,7 +57,7 @@ li a img, li a span {
 }
 
 footer {
-    background-color: #66c3ff;
+    background-color: var(--blue);
     margin-top: 50px;
     padding: 0.5vh;
 }
