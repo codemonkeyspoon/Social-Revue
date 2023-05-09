@@ -1,0 +1,46 @@
+/* Import Roboto from Google Fonts */
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+
+/* Universal selector */
+* {
+    box-sizing: border-box;
+    font-family: Roboto;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+body {
+    background-color: #474350;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 40px 0;
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
+nav ul li a {
+    display: flex;
+    flex-direction: row;
+}
+
+a {
+    color: #66c3ff;
+    text-decoration: none;
+}
+
+img, li a span {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 1vh;
+}
+
+footer {
+    margin-top: 50px;
+}
