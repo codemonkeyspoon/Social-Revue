@@ -35,6 +35,14 @@ User.init(
       validate: {
         len: [4]
       }
+    },
+    up_score: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
+    down_score: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
     }
   },
   {
@@ -51,7 +59,7 @@ User.init(
       }
     },
     sequelize,
-    timestamps: false,
+    timestamps: true,
     freezeTableName: true,
     underscored: true,
     modelName: 'user'

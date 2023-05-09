@@ -2,7 +2,7 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 const User = require('./User');
 
-class Post extends Model {}
+class Post extends Model { }
 
 Post.init(
   {
@@ -29,7 +29,15 @@ Post.init(
         model: 'user',
         key: 'id'
       }
-    }
+    },
+    up_score: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
+    down_score: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
   },
   {
     sequelize,
