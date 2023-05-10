@@ -3,7 +3,6 @@ async function editFormHandler(event) {
   
     const title = document.querySelector('input[name="post-title"]').value.trim();
     const post_content = document.querySelector('textarea[name="post-content"]').value;
-  
     const id = window.location.toString().split('/')[
       window.location.toString().split('/').length - 1
     ];
@@ -24,5 +23,4 @@ async function editFormHandler(event) {
       alert(response.statusText);
     }
   }
-  
   document.querySelector('.edit-post-form').addEventListener('submit', editFormHandler);
