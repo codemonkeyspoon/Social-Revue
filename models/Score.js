@@ -2,9 +2,9 @@ const { Model, DataTypes, Sequelize } = require('sequelize')
 
 const sequelize = require('../config/connection');
 
-class Topic extends Model { }
+class Score extends Model { }
 
-Topic.init(
+Score.init(
     {
         id: {
             type: DataTypes.UUID,
@@ -12,29 +12,17 @@ Topic.init(
             primaryKey: true,
             defaultValue: Sequelize.UUIDV4()
         },
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        description: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        up_score: {
-            type:DataTypes.INTEGER,
-            defaultValue: 0
-        },
-        down_score: {
-            type:DataTypes.INTEGER,
-            defaultValue: 0
-        },
-        category_id: {
+        user_id: {
             type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'category',
+                model: 'user',
                 key: 'id'
             }
+        },
+        score: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     },
     {
@@ -42,8 +30,8 @@ Topic.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'topic',
+        modelName: 'score',
       }
 );
 
-module.exports = Topic;
+module.exports = Score;
