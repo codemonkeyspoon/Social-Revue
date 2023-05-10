@@ -36,7 +36,7 @@ Comment.init(
             }
         },
         text: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING(500),
             allowNull: false
         },
         up_score: {

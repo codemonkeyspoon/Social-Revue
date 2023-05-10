@@ -1,59 +1,21 @@
+const { faker } = require('@faker-js/faker');
+const { User } = require('../models');
 const sequelize = require('../config/connection');
-const { User, Post } = require('../models');
 
-const userdata = [
-  {
-    username: 'alesmonde0',
-    email: 'nwestnedge0@cbc.ca',
-    password: 'password123'
-  },
-  {
-    username: 'jwilloughway1',
-    email: 'rmebes1@sogou.com',
-    password: 'password123'
-  },
-  {
-    username: 'iboddam2',
-    email: 'cstoneman2@last.fm',
-    password: 'password123'
-  },
-  {
-    username: 'dstanmer3',
-    email: 'ihellier3@goo.ne.jp',
-    password: 'password123'
-  },
-  {
-    username: 'djiri4',
-    email: 'gmidgley4@weather.com',
-    password: 'password123'
-  },
-  {
-    username: 'msprague5',
-    email: 'larnout5@imdb.com',
-    password: 'password123'
-  },
-  {
-    username: 'mpergens6',
-    email: 'hnapleton6@feedburner.com',
-    password: 'password123'
-  },
-  {
-    username: 'tpenniell7',
-    email: 'kperigo7@china.com.cn',
-    password: 'password123'
-  },
-  {
-    username: 'msabbins8',
-    email: 'lmongain8@google.ru',
-    password: 'password123'
-  },
-  {
-    username: 'jmacarthur9',
-    email: 'bsteen9@epa.gov',
-    password: 'password123'
-  }
-];
+const seedUsers = async () => {
+  // Generate an array of 10 user objects
+  const userData = Array.from({ length: 100 }, (_, i) => ({
+    username: faker.internet.userName(),
+    email: faker.internet.email(),
+    password: faker.internet.password(),
+    up_score: faker.random.numeric(),
+    down_score: faker.random.numeric(),
+  }));
 
-const seedUsers = () => User.bulkCreate(userdata, {individualHooks: true});
+  // Create the users in the database
+  await User.bulkCreate(userData);
+
+  console.log('Users seeded successfully!');
+};
 
 module.exports = seedUsers;
