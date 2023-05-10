@@ -1,32 +1,37 @@
 
 async function commentFormHandler(event) {
-    
-    event.preventDefault();
-    
-    const comment_text = document.querySelector('textarea[name="comment-body"]').value;
-    const post_id = window.location.toString().split('/')[
-      window.location.toString().split('/').length - 1
-    ];
-    
-    if (comment_text) {
-      // Send POST request to server
-      const response = await fetch('/api/comments', {
-        method: 'POST',
-        body: JSON.stringify({
-          post_id,
-          comment_text
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      // Wait for server to respond, check if response is OK
-      if (response.ok) {
-        document.location.reload();
-      } else {
-        alert(response.statusText);
+  event.preventDefault();
+
+  const text = document.querySelector('textarea[name="comment-body"]').value;
+  const post_id = window.location.toString().split('/')[
+    window.location.toString().split('/').length - 1
+  ];
+
+  if (text) {
+    // Send POST request to server
+    const response = await fetch('/api/comments', {
+      method: 'POST',
+      body: JSON.stringify({
+        post_id,
+        text
+      }),
+      headers: {
+        'Content-Type': 'application/json'
       }
+    });
+    // Wait for server to respond, check if response is OK
+    if (response.ok) {
+      document.location.reload();
+    } else {
+      alert(response.statusText);
     }
+  } else {
+    alert('Please enter a comment.');
   }
-  document.querySelector('.comment-form').addEventListener('submit', commentFormHandler);
+}
+
+document.querySelector('.comment-form').addEventListener('submit', (event) => {
+  commentFormHandler(event);
+});
+
   
