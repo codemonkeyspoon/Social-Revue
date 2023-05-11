@@ -2,8 +2,9 @@
   {{#each this}}
   <section class="comment">
     <div class="meta">
-      {{user.username}} on {{format_date created_at}} Likeability {{total_score}} <button class="comment-like-button" data-comment-id="{{id}}">Like</button> <button class="comment-dislike-button" data-comment-id="{{id}}">Dislike</button>
+      Comment by: {{user.username}} on {{format_date created_at}} Likeability {{total_score}} <button class="comment-like-button" data-comment-id="{{id}}">Like</button> <button class="comment-dislike-button" data-comment-id="{{id}}">Dislike</button>
     </div>
+    <br>
     <div class="text">
       {{text}}
     </div>
