@@ -1,40 +1,40 @@
 const Sequelize = require('sequelize');
 const { v4: uuidv4 } = require('uuid');
 const sequelize = require('../config/connection');
-const Topic = require('../models/Topic');
+const Category = require('../models/Category');
 
 
 
 
-const topicData = [
+const categoryData = [
   {
     
-    name: "Games",
+    category_name: "Games",
     
   },
   {
     
-    name: "Movies",
+    category_name: "Movies",
     
   },
   {
     
-    name: "Music",
+    category_name: "Music",
     
   },
   {
     
-    name: 'News',
+    category_name: 'News',
     
   },
   {
     
-    name: 'Food',
+    category_name: 'Food',
     
   },
   {
     
-    name: 'Lifestyle',
+    category_name: 'Lifestyle',
     
   },
 ];
@@ -42,9 +42,9 @@ const topicData = [
 
 const seedTopics = async () => {
     try {
-      await sequelize.sync({ force: true }); // Sync the model with the database
+      await sequelize.sync({ force: false }); // Sync the model with the database
   
-      await Topic.bulkCreate(topicData); // Insert the seed data into the "Topic" table
+      await Category.bulkCreate(categoryData); // Insert the seed data into the "category" table
   
       console.log('Topics seeded successfully.');
       process.exit(0); // Exit the process

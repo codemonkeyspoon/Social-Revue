@@ -3,16 +3,13 @@
 
   <form class="new-post-form">
     <div>
-      <select name="pets" id="pet-select">
-    <option value="">--Please choose a Topic--</option>
-    <option value="dog">Game</option>
-    <option value="cat">Movie</option>
-    <option value="hamster">Food</option>
-    <option value="parrot">News</option>
-    <option value="spider">Music</option>
-    <option value="goldfish">Lifestyle</option>
-</select>
-    </div>
+  <select name="category_id" id="category-select">
+    <option value="">--Please choose a Category--</option>
+    {{#each categories}}
+      <option value="{{ id }}">{{ category_name }}</option>
+    {{/each}}
+  </select>
+</div>
     <div>
       <label for="post-title">Title</label>
       <input type="text" id="post-title" name="post-title" />
