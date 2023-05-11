@@ -2,6 +2,8 @@ const { Model, DataTypes, Sequelize } = require('sequelize')
 
 const sequelize = require('../config/connection');
 
+const { v4: uuidv4 } = require('uuid'); // Import the UUID v4 generator
+
 class Comment extends Model { }
 
 Comment.init(
@@ -38,16 +40,7 @@ Comment.init(
         text: {
             type: DataTypes.STRING(500),
             allowNull: false
-        },
-        up_score: {
-            type:DataTypes.INTEGER,
-            defaultValue: 0
-        },
-        down_score: {
-            type:DataTypes.INTEGER,
-            defaultValue: 0
-        },
-        
+        },     
     },
     {
         sequelize,

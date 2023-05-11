@@ -2,6 +2,8 @@ const { Model, DataTypes, Sequelize } = require('sequelize')
 
 const sequelize = require('../config/connection');
 
+const { v4: uuidv4 } = require('uuid'); // Import the UUID v4 generator
+
 class Score extends Model { }
 
 Score.init(

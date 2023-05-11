@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Comment } = require('../../models');
+const { Comment ,Score } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
@@ -43,6 +43,50 @@ router.delete('/:id', withAuth, (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
+});
+
+// Increase score by one for a comment
+router.put('/:id/like', withAuth, (req, res) => {
+  if (req.session) {
+    Score.create({
+      score: 1,
+      user_id: req.session.user_id,
+      comment_id: req.params.id,
+    })
+      .then(dbScoreData => {
+        if (!dbScoreData) {
+          res.status(404).json({ message: 'No score found with this id' });
+          return;
+        }
+        res.json(dbScoreData);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  }
+});
+
+// Decrease score by one for a comment
+router.put('/:id/dislike', withAuth, (req, res) => {
+  if (req.session) {
+    Score.create({
+      score: -1,
+      user_id: req.session.user_id,
+      comment_id: req.params.id,
+    })
+      .then(dbScoreData => {
+        if (!dbScoreData) {
+          res.status(404).json({ message: 'No score found with this id' });
+          return;
+        }
+        res.json(dbScoreData);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  }
 });
 
 module.exports = router;

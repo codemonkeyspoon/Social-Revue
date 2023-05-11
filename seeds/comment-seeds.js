@@ -16,9 +16,7 @@ const commentSeeds = async () => {
       const text = faker.lorem.words(faker.datatype.number({ min: 1, max: 50 }));
       const userId = faker.helpers.arrayElement(users).id;
       const postId = post.id;
-      const upScore = faker.datatype.number({ min: 0, max: 100 });
-      const downScore = faker.datatype.number({ min: 0, max: 100 });
-      comments.push({ post_id: postId, user_id: userId, text, up_score: upScore, down_score: downScore });
+      comments.push({ post_id: postId, user_id: userId, text,});
     }
   });
 

@@ -20,7 +20,8 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "mysql2": "^2.2.5",
-    "sequelize": "^6.31.1"
+    "sequelize": "^6.31.1",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0"

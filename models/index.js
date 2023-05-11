@@ -1,15 +1,13 @@
 const Category = require('./Category');
 const Topic = require('./Topic');
-
 const Post = require('./Post');
 const User = require('./User');
 const Comment = require('./Comment');
+const Score = require('./Score'); // Add the Score model import
 
 User.hasMany(Post, {
   foreignKey: 'user_id'
 });
-
-
 
 Post.belongsTo(User, {
   foreignKey: 'user_id',
@@ -30,11 +28,38 @@ User.hasMany(Comment, {
 Post.hasMany(Comment, {
   foreignKey: 'post_id'
 });
+
 Category.hasMany(Topic, {
   foreignKey: 'category_id'
-})
+});
+
 Topic.belongsTo(Category, {
   foreignKey: 'category_id'
-})
+});
 
-module.exports = { User, Category, Topic, Post, Comment };
+// Add the Score relations
+User.hasMany(Score, {
+  foreignKey: 'user_id'
+});
+
+Score.belongsTo(User, {
+  foreignKey: 'user_id'
+});
+
+Post.hasMany(Score, {
+  foreignKey: 'post_id'
+});
+
+Score.belongsTo(Post, {
+  foreignKey: 'post_id'
+});
+
+Comment.hasMany(Score, {
+  foreignKey: 'comment_id'
+});
+
+Score.belongsTo(Comment, {
+  foreignKey: 'comment_id'
+});
+
+module.exports = { User, Category, Topic, Post, Comment, Score }; // Include the Score in the exported models

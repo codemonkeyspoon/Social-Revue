@@ -2,6 +2,8 @@ const { Model, DataTypes, Sequelize } = require('sequelize');
 const sequelize = require('../config/connection');
 const User = require('./User');
 
+const { v4: uuidv4 } = require('uuid'); // Import the UUID v4 generator
+
 class Post extends Model { }
 
 Post.init(
@@ -29,14 +31,6 @@ Post.init(
         model: 'user',
         key: 'id'
       }
-    },
-    up_score: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0
-    },
-    down_score: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0
     },
   },
   {
