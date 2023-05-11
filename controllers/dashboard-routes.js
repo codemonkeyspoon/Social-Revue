@@ -1,66 +1,78 @@
-const router = require('express').Router();
-const sequelize = require('../config/connection');
-const { Post, User, Comment, Category } = require('../models');
-const withAuth = require('../utils/auth');
+const router = require("express").Router();
+const sequelize = require("../config/connection");
+const { Post, User, Comment, Category } = require("../models");
+const withAuth = require("../utils/auth");
 
-router.get('/', withAuth, (req, res) => {
+router.get("/", withAuth, (req, res) => {
   Promise.all([
     Post.findAll({
       where: {
         user_id: req.session.user_id,
       },
-      attributes: ['id', 'title', 'created_at', 'post_content'],
+      attributes: ["id", "title", "created_at", "post_content"],
       include: [
         {
           model: Comment,
-          attributes: ['id', 'text', 'post_id', 'user_id', 'created_at'],
+          attributes: ["id", "text", "post_id", "user_id", "created_at"],
           include: {
             model: User,
-            attributes: ['username'],
+            attributes: ["username"],
           },
         },
         {
           model: User,
-          attributes: ['username'],
+          attributes: ["username"],
+        },
+        {
+          model: Category,
+          attributes: ["category_name"],
+          include: [
+            {
+              model: Post,
+              attributes: ["id"],
+            },
+          ],
         },
       ],
     }),
-    Category.findAll() // Fetch all categories
+    Category.findAll(), // Fetch all categories
   ])
     .then(([dbPostData, dbCategoryData]) => {
-      const posts = dbPostData.map(post => post.get({ plain: true }));
-      const categories = dbCategoryData.map(category => category.get({ plain: true }));
-      res.render('dashboard', { posts, categories, loggedIn: true });
+      const posts = dbPostData.map((post) => post.get({ plain: true }));
+      const categories = dbCategoryData.map((category) =>
+        category.get({ plain: true })
+      );
+      res.render("dashboard", { posts, categories, loggedIn: true });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
 });
 
-router.get('/edit/:id', withAuth, (req, res) => {
+router.get("/edit/:id", withAuth, (req, res) => {
   Post.findByPk(req.params.id, {
-    attributes: ['id', 'title', 'created_at', 'post_content'],
+    attributes: ["id", "title", "created_at", "post_content"],
     include: [
       {
         model: Comment,
-        attributes: ['id', 'text', 'post_id', 'user_id', 'created_at'],
+        attributes: ["id", "text", "post_id", "user_id", "created_at"],
         include: {
           model: User,
-          attributes: ['username'],
+          attributes: ["username"],
         },
       },
       {
         model: User,
-        attributes: ['username'],
+        attributes: ["username"],
       },
     ],
   })
-    .then(dbPostData => {
+    .then((dbPostData) => {
       if (dbPostData) {
         const post = dbPostData.get({ plain: true });
 
-        res.render('edit-post', {
+        res.render("edit-post", {
           post,
           loggedIn: true,
         });
@@ -68,7 +80,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
         res.status(404).end();
       }
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(500).json(err);
     });
 });

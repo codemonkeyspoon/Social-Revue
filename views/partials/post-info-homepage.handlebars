@@ -1,9 +1,9 @@
 <article class="post">
-  <h4>Category {{category_name}}</h4>
+  <h4>{{category.category_name}}</h4>
   <div class="title">
     <a href="/post/{{id}}">{{title}}</a>
   </div>
   <div class="meta">
-    by {{user.username}} on {{format_date created_at}} Likeability {{total_score}} <button class="post-like-button" data-post-id="{{id}}">Like</button> <button class="post-dislike-button" data-post-id="{{id}}">Dislike</button>
+    by {{user.username}} on {{format_date created_at}} Comments: {{comments.length}} Likeability {{total_score}} <button class="post-like-button" data-post-id="{{id}}">Like</button> <button class="post-dislike-button" data-post-id="{{id}}">Dislike</button>
   </div>
 </article>

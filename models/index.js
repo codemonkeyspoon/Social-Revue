@@ -62,4 +62,13 @@ Score.belongsTo(Comment, {
   foreignKey: 'comment_id'
 });
 
+Category.hasMany(Post, {
+  foreignKey: 'category_id'
+});
+
+Post.belongsTo(Category, {
+  foreignKey: 'category_id'
+});
+
+
 module.exports = { User, Category, Post, Comment, Score }; // Include the Score in the exported models

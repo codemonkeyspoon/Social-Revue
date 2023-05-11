@@ -1,10 +1,17 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Post, User, Comment, Score } = require('../models');
+const { Post, User, Comment, Score, Category } = require('../models');
 
 router.get('/', (req, res) => {
+  Promise.all([
   Post.findAll({
-    attributes: ['id', 'title', 'created_at', 'post_content',[sequelize.literal('(SELECT SUM(score) FROM score WHERE score.post_id = Post.id)'), 'total_score'],],
+    attributes: [
+      'id',
+      'title',
+      'created_at',
+      'post_content',
+      [sequelize.literal('(SELECT SUM(score) FROM score WHERE score.post_id = Post.id)'), 'total_score'],
+    ],
     include: [
       {
         model: User,
@@ -14,15 +21,40 @@ router.get('/', (req, res) => {
         model: Score,
         attributes: ['score'],
       },
+      {
+        model: Category,
+        attributes: ['category_name'],
+      },
+      {
+        model: Comment,
+        attributes: ['id', 'text', 'post_id', 'user_id', 'created_at'],
+        include: {
+          model: User,
+          attributes: ['username'],
+        },
+      },
     ],
     order: [[sequelize.literal('total_score'), 'DESC']],
+  }),
+  Category.findAll({
+    attributes: ['category_name', 'id'],
+    include: [
+      {
+        model: Post,
+        attributes: ['id'],
+      },
+    ],
   })
-    .then(dbPostData => {
-      const posts = dbPostData.map(post => post.get({ plain: true }));
-
+])
+  .then(([dbPostData, dbCategoryData]) => {
+    const posts = dbPostData.map((post) => post.get({ plain: true }));
+    const categories = dbCategoryData.map((category) =>
+      category.get({ plain: true })
+    );
       res.render('homepage', {
         posts,
         loggedIn: req.session.loggedIn,
+        categories
       });
     })
     .catch(err => {
