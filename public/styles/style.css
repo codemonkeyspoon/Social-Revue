@@ -297,3 +297,35 @@ div {
     text-decoration: none;
     cursor: pointer;
   }
+
+
+/*Styling for post and comment view*/
+  .comments {
+    position: relative;
+    left: 45px;
+    padding: 10px;
+  }
+
+  .comment {
+    padding: 10px;
+    padding: 10px;
+    border: black dashed 2px;
+    margin: 15px;
+  }
+
+  #post-title {
+    font-size: xx-large;
+  }
+
+  .post {
+    border: black solid 2px;
+    margin-top: 30px;
+  }
+
+  #post-content {
+    font-size: larger;
+  }
+
+  h4 {
+    margin: 0;
+  }
