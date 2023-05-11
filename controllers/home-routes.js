@@ -39,17 +39,32 @@ router.get('/post/:id', (req, res) => {
     include: [
       {
         model: Comment,
-        attributes: ['id', 'text', 'post_id', 'user_id', 'created_at'],
-        include: {
-          model: User,
-          attributes: ['username'],
-        },
+        attributes: [
+          'id',
+          'text',
+          'post_id',
+          'user_id',
+          'created_at',
+          [sequelize.fn('SUM', sequelize.col('comments->scores.score')), 'total_score'],
+        ],
+        include: [
+          {
+            model: User,
+            attributes: ['username'],
+          },
+          {
+            model: Score,
+            as: 'scores',
+            attributes: [],
+          },
+        ],
       },
       {
         model: User,
         attributes: ['username'],
       },
     ],
+    group: ['post.id', 'comments.id', 'comments->user.id'],
   })
     .then(dbPostData => {
       if (!dbPostData) {
@@ -69,6 +84,7 @@ router.get('/post/:id', (req, res) => {
       res.status(500).json(err);
     });
 });
+
 
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {

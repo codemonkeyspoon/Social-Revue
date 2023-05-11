@@ -3,6 +3,6 @@
     <a href="/post/{{id}}">{{title}}</a>
   </div>
   <div class="meta">
-    by {{user.username}} on {{format_date created_at}} Likeability {{total_score}} <button id="like-button" data-post-id="{{id}}">Like</button> <button id="dislike-button" data-post-id="{{id}}">Dislike</button>
+    by {{user.username}} on {{format_date created_at}} Likeability {{total_score}} <button class="post-like-button" data-post-id="{{id}}">Like</button> <button class="post-dislike-button" data-post-id="{{id}}">Dislike</button>
   </div>
 </article>
