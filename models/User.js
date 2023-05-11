@@ -1,6 +1,7 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
+const { v4: uuidv4 } = require('uuid'); // Import the UUID v4 generator
 
 
 class User extends Model {

@@ -2,6 +2,8 @@ const { Model, DataTypes, Sequelize } = require('sequelize')
 
 const sequelize = require('../config/connection');
 
+const { v4: uuidv4 } = require('uuid'); // Import the UUID v4 generator
+
 class Category extends Model { }
 
 Category.init(
@@ -19,14 +21,6 @@ Category.init(
         description: {
             type: DataTypes.STRING,
             allowNull: false
-        },
-        up_score: {
-            type:DataTypes.INTEGER,
-            defaultValue: 0
-        },
-        down_score: {
-            type:DataTypes.INTEGER,
-            defaultValue: 0
         },
     },
     {

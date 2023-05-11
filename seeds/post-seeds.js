@@ -15,9 +15,7 @@ const postSeeds = async () => {
       const title = faker.lorem.sentence();
       const postContent = faker.lorem.paragraphs(1);
       const userId = user.id;
-      const upScore = faker.datatype.number({ min: 0, max: 100 });
-      const downScore = faker.datatype.number({ min: 0, max: 100 });
-      posts.push({ title, post_content: postContent, user_id: userId, up_score: upScore, down_score: downScore });
+      posts.push({ title, post_content: postContent, user_id: userId,});
     }
   });
 

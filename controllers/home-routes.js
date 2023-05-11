@@ -1,14 +1,18 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Post, User, Comment } = require('../models');
+const { Post, User, Comment, Score } = require('../models');
 
 router.get('/', (req, res) => {
   Post.findAll({
-    attributes: ['id', 'title', 'created_at', 'post_content', 'up_score', 'down_score'],
+    attributes: ['id', 'title', 'created_at', 'post_content',[sequelize.literal('(SELECT SUM(score) FROM score WHERE score.post_id = Post.id)'), 'total_score'],],
     include: [
       {
         model: User,
         attributes: ['username'],
+      },
+      {
+        model: Score,
+        attributes: ['score'],
       },
     ],
   })
@@ -35,7 +39,7 @@ router.get('/post/:id', (req, res) => {
     include: [
       {
         model: Comment,
-        attributes: ['id', 'text', 'post_id', 'user_id', 'created_at', 'up_score', 'down_score'],
+        attributes: ['id', 'text', 'post_id', 'user_id', 'created_at'],
         include: {
           model: User,
           attributes: ['username'],
@@ -82,6 +86,50 @@ router.get('/signup', (req, res) => {
   }
 
   res.render('sign-up');
+});
+
+// increase score by one
+router.put('/post/:id/like', (req, res) => {
+  if (req.session) {
+    Score.create({
+      score: 1,
+      user_id: req.session.user_id,
+      post_id: req.params.id,
+    })
+      .then(dbScoreData => {
+        if (!dbScoreData) {
+          res.status(404).json({ message: 'No score found with this id' });
+          return;
+        }
+        res.json(dbScoreData);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  }
+});
+
+// decrease score by one
+router.put('/post/:id/dislike', (req, res) => {
+  if (req.session) {
+    Score.create({
+      score: -1,
+      user_id: req.session.user_id,
+      post_id: req.params.id,
+    })
+      .then(dbScoreData => {
+        if (!dbScoreData) {
+          res.status(404).json({ message: 'No score found with this id' });
+          return;
+        }
+        res.json(dbScoreData);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  }
 });
 
 module.exports = router;
