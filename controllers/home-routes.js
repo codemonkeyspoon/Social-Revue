@@ -15,6 +15,7 @@ router.get('/', (req, res) => {
         attributes: ['score'],
       },
     ],
+    order: [[sequelize.literal('total_score'), 'DESC']],
   })
     .then(dbPostData => {
       const posts = dbPostData.map(post => post.get({ plain: true }));
@@ -65,6 +66,7 @@ router.get('/post/:id', (req, res) => {
       },
     ],
     group: ['post.id', 'comments.id', 'comments->user.id'],
+    order: [[sequelize.literal('SUM(`comments->scores`.`score`)'), 'DESC']],
   })
     .then(dbPostData => {
       if (!dbPostData) {
@@ -84,6 +86,8 @@ router.get('/post/:id', (req, res) => {
       res.status(500).json(err);
     });
 });
+
+
 
 
 router.get('/login', (req, res) => {
