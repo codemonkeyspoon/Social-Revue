@@ -4,7 +4,12 @@ const { User, Category, Topic, Post, Comment } = require('../../models')
 router.get('/', async (req, res) => {
     try {
         const categoryData = await Category.findAll({
-            include: [{model: Topic}]
+            include: [
+                {
+                  model: Post,
+                  attributes: ['id'],
+                }
+            ],
         });
 
         res.status(200).json(categoryData);

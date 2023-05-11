@@ -24,6 +24,14 @@ router.get('/', (req, res) => {
         model: Category,
         attributes: ['category_name'],
       },
+      {
+        model: Comment,
+        attributes: ['id', 'text', 'post_id', 'user_id', 'created_at'],
+        include: {
+          model: User,
+          attributes: ['username'],
+        },
+      },
     ],
     order: [[sequelize.literal('total_score'), 'DESC']],
   })
