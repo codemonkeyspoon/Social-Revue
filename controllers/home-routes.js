@@ -1,10 +1,16 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Post, User, Comment, Score } = require('../models');
+const { Post, User, Comment, Score, Category } = require('../models');
 
 router.get('/', (req, res) => {
   Post.findAll({
-    attributes: ['id', 'title', 'created_at', 'post_content',[sequelize.literal('(SELECT SUM(score) FROM score WHERE score.post_id = Post.id)'), 'total_score'],],
+    attributes: [
+      'id',
+      'title',
+      'created_at',
+      'post_content',
+      [sequelize.literal('(SELECT SUM(score) FROM score WHERE score.post_id = Post.id)'), 'total_score'],
+    ],
     include: [
       {
         model: User,
@@ -13,6 +19,10 @@ router.get('/', (req, res) => {
       {
         model: Score,
         attributes: ['score'],
+      },
+      {
+        model: Category,
+        attributes: ['category_name'],
       },
     ],
     order: [[sequelize.literal('total_score'), 'DESC']],

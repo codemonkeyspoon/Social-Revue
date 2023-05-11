@@ -23,6 +23,10 @@ router.get('/', withAuth, (req, res) => {
           model: User,
           attributes: ['username'],
         },
+        {
+          model: Category,
+          attributes: ['category_name'],
+        },
       ],
     }),
     Category.findAll() // Fetch all categories
