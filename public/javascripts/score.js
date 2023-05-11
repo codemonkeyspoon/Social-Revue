@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(data => {
         console.log(data.message); // Log success message
         updateScoreUI(`comment-score-${commentId}`, data.total_score); // Update the score UI
+        location.reload(); // Refresh the page
       })
       .catch(error => {
         console.error(error);
@@ -64,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(data => {
         console.log(data.message); // Log success message
         updateScoreUI(`comment-score-${commentId}`, data.total_score); // Update the score UI
+        location.reload(); // Refresh the page
       })
       .catch(error => {
         console.error(error);
