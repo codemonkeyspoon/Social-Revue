@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 
 :root {
+    --darkgray: #343638;
     --gray: #474350;
     --lightgray: #AAA;
     --wheat: #EFD6AC;
@@ -9,7 +10,77 @@
     --darkblue: #0b77be;
     --red: #E83151;
     --green: #598B2C;
+    --firered: #f50713;
+    --purple: #730dd9;
+    --pink: #dd14f7;
   }
+
+body {
+    border-color: var(--lightgray);
+    color: var(--wheat);
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: center;
+    align-items: normal;
+    background-color: var(--darkgray);
+    
+}
+a:-webkit-any-link {
+    background-color: var(--darkgray);
+    color: var(--wheat);
+    cursor: pointer;
+    text-decoration: none;
+    display: inherit;
+}
+
+h1 {
+    margin: 25px 0;
+    text-align: center;
+    background-color: var(--darkblue);
+}
+
+.login-form {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin: 0 0;
+    padding: 1rem;
+}
+
+.signup-form {
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+ul {
+    display: flex;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    justify-content: space-evenly;
+    background-color: var(--darkgray);
+    color: var(--wheat);
+}
+
+footer {
+    position: sticky;
+    width: auto;
+    background-color: var(--darkgray);
+    color: var(--wheat);
+    margin-top: 0;
+    padding: 0.5vh;
+}
+
+
 
 /* Universal selector */
 /* * {
@@ -21,7 +92,7 @@
     justify-content: center;
 } */
 
-li > a {
+/* li > a {
     color: var(--lightblue);
     justify-content: space-evenly;
 }
@@ -30,12 +101,6 @@ body {
     background-color: var(--lightgray);
 }
 
-h1 {
-    margin: 25px 0;
-    text-align: center;
-    font-family: Roboto;
-    background-color: var(--darkblue);
-}
 
 p {
     text-align: center;
@@ -65,22 +130,9 @@ li a img, li a span {
     margin: 1vh;
 }
 
-footer {
-    position: sticky;
-    width: auto;
-    background-color: var(--lightblue);
-    color: var(--wheat);
-    margin-top: 0;
-    padding: 0.5vh;
-}
 
-.login-form {
-    justify-content: center;
-    text-align: center;
-    margin: 0 0;
-    padding: 0;
 
-}
+
 
 a:link {
     justify-content: center;
@@ -88,16 +140,13 @@ a:link {
     
 }
 
-.signup-form {
-    justify-content: center;
-    text-align: center;
-}
+
 
 /* .a {
     justify-content: center;
 } */
 
-h2, h3, h4, h5, h6 {
+/* h2, h3, h4, h5, h6 {
 
 }
 
@@ -105,12 +154,7 @@ h2, h3, h4, h5, h6 {
     justify-content: center;
 } */
 
-a:-webkit-any-link {
-    color: var(--wheat);
-    cursor: pointer;
-    text-decoration: none;
-    display: inherit;
-}
+
 
 button {
     width: 100px;
@@ -195,16 +239,7 @@ input#password-signup {
 nav {
     display: inline;
 }
-ul {
-    display: flex;
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
-    justify-content: space-evenly;
-}
+
 
 li {
     display: list-item;
@@ -216,4 +251,8 @@ form {
     display: flex;
     margin-top: 0em;
     margin-block-end: 1em;
+}
+div {
+    display: inline;
+    align-items: center;
 }
