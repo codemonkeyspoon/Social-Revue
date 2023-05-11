@@ -11,7 +11,7 @@
     <div class="wrapper">
       <header>
         <h1>
-          <a href="/">Social Revue</a>
+          <a href="/">Social ReVue</a>
         </h1>
         <nav>
           {{#if loggedIn}}
@@ -20,28 +20,27 @@
           {{else}}
             <form class="login-form">
               <div>
-                <label for="email-login">email:</label>
-                <input type="text" id="email-login" />
+                <!-- <label for="email-login">Email:</label> -->
+                <input type="text" id="email-login" placeholder="EMAIL"/>
               </div>
               <div>
-                <label for="password-login">password:</label>
-                <input type="password" id="password-login" />
+                <!-- <label for="password-login">Password:</label> -->
+                <input type="password" id="password-login" placeholder="PASSWORD"/>
               </div>
               <div>
-                <button type="submit">login</button>
+                <button type="submit">LOGIN</button>
               </div>
             </form>
 
             <script src="/javascripts/login.js"> </script>
           {{/if}}
-          <a href="/signup">Sign-up</a>
+          <a href="/signup">Create Account</a>
         </nav>
       </header>
       <main>
         {{{body}}}
       </main>
       <footer>
-        Thanks for checking out Social Revue!
         <ul>
           <li><a href="#">Home</a></li>
           <li><a href="#">Reviews</a></li>
