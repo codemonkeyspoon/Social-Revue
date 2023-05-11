@@ -1,12 +1,10 @@
-<h3>Music</h3>
-<h3>Games</h3>
-<h3>Lifestyle</h3>
-<h3>Movies</h3>
-<h3>Food</h3>
-<h3>News</h3>
 
+{{#each categories as |category|}}
+<h3>{{category.category_name}} ({{category.posts.length}})</h3>
+{{/each}}
 <ol class="post-list">
   {{#each posts as |post|}}
+
   <li>
     {{> post-info-homepage post }}
   </li>

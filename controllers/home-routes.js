@@ -3,6 +3,7 @@ const sequelize = require('../config/connection');
 const { Post, User, Comment, Score, Category } = require('../models');
 
 router.get('/', (req, res) => {
+  Promise.all([
   Post.findAll({
     attributes: [
       'id',
@@ -34,13 +35,26 @@ router.get('/', (req, res) => {
       },
     ],
     order: [[sequelize.literal('total_score'), 'DESC']],
+  }),
+  Category.findAll({
+    attributes: ['category_name', 'id'],
+    include: [
+      {
+        model: Post,
+        attributes: ['id'],
+      },
+    ],
   })
-    .then(dbPostData => {
-      const posts = dbPostData.map(post => post.get({ plain: true }));
-
+])
+  .then(([dbPostData, dbCategoryData]) => {
+    const posts = dbPostData.map((post) => post.get({ plain: true }));
+    const categories = dbCategoryData.map((category) =>
+      category.get({ plain: true })
+    );
       res.render('homepage', {
         posts,
         loggedIn: req.session.loggedIn,
+        categories
       });
     })
     .catch(err => {
