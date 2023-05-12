@@ -1,16 +1,18 @@
 <article class="post">
   <h4>{{category.category_name}}</h4>
-  <div class="title">
+  <div class="title" id="post-title">
     <a href="/post/{{id}}">{{title}}</a>
   </div>
+  <br>
   <div class="meta">
     by {{user.username}} on {{format_date created_at}}
   </div>
-  <div>
-    <span>{{post_content}}</span>
-  </div>
-
+ 
   <div class="meta">
     <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
+  </div>
+  <br>
+  <div>
+    <span id="post-content">Main Post: {{post_content}}</span>
   </div>
 </article>

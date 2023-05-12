@@ -111,24 +111,34 @@ router.put('/:id', withAuth, (req, res) => {
     });
 });
 
-router.delete('/:id', withAuth, (req, res) => {
-  console.log('id', req.params.id);
-  Post.destroy({
-    where: {
-      id: req.params.id
-    }
-  })
-    .then(dbPostData => {
-      if (!dbPostData) {
-        res.status(404).json({ message: 'No post found with this id' });
-        return;
+router.delete('/:id', withAuth, async (req, res) => {
+  try {
+    const postId = req.params.id;
+
+    // Delete the comments associated with the post
+    await Comment.destroy({
+      where: {
+        post_id: postId
       }
-      res.json(dbPostData);
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
     });
+
+    // Delete the post
+    const deletedPost = await Post.destroy({
+      where: {
+        id: postId
+      }
+    });
+
+    if (!deletedPost) {
+      res.status(404).json({ message: 'No post found with this id' });
+      return;
+    }
+
+    res.json({ message: 'Post deleted successfully' });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: 'Failed to delete post' });
+  }
 });
 
 module.exports = router;
