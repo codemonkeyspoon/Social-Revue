@@ -1,7 +1,24 @@
+<div class="category-select"><h3 class="category-title"><a href="/?category=all">All Posts</a></h3>
+{{#each categories as |category|}}
+  <h3 class="category-title"><a href="#" class="category-link" data-category-id="{{category.id}}">{{category.category_name}} ({{category.posts.length}})</a></h3>
+{{/each}}
+</div>
 <ol class="post-list">
   {{#each posts as |post|}}
-  <li>
-    {{> post-info-homepage post }}
-  </li>
+    <li>
+      {{> post-info-homepage post}}
+    </li>
   {{/each}}
 </ol>
+
+<script>
+  // Add an event listener to the category links
+  const categoryLinks = document.querySelectorAll('.category-link');
+  categoryLinks.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      const categoryId = link.dataset.categoryId;
+      window.location.href = `/?category=${categoryId}`;
+    });
+  });
+</script>

@@ -32,6 +32,13 @@ Post.init(
         key: 'id'
       }
     },
+    category_id: {
+      type: DataTypes.UUID,
+      references: {
+        model: 'category',
+        key: 'id'
+      }
+    },
   },
   {
     sequelize,

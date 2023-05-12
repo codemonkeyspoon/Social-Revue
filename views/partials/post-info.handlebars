@@ -1,15 +1,22 @@
-<article class="post">
-  <div class="title">
-    <a href="/post/{{id}}">{{title}}</a>
+<article class="postinfo-single">
+  <div class="votebuttons">
+    <button class="post-like-button" data-post-id="{{id}}">
+      <img class="upvote" src="/images/up.png">
+    </button>
+    <div class="score">{{total_score}}</div>
+    <button class="post-dislike-button" data-post-id="{{id}}">
+      <img class="downvote" src="/images/down.png">
+    </button>
   </div>
-  <div class="meta">
-    by {{user.username}} on {{format_date created_at}}
-  </div>
-  <div>
-    <span>{{post_content}}</span>
-  </div>
-
-  <div class="meta">
-    <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
+  <div id="postinfo">
+    <h4>{{category.category_name}}</h4>
+    <div class="title" id="post-title">
+      <a href="/post/{{id}}">{{title}}</a>
+    </div>
+    <div class="meta">
+      by {{user.username}} on {{format_date created_at}} Comments: {{comments.length}}
+    </div>
+    <br>
+    <div>Main Post: {{post_content}}</div>
   </div>
 </article>

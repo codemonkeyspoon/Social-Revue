@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
     include: [
       {
         model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+        attributes: ['id', 'text', 'post_id', 'user_id', 'created_at'],
         include: {
           model: User,
           attributes: ['username']
@@ -47,7 +47,7 @@ router.get('/:id', (req, res) => {
     include: [
       {
         model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+        attributes: ['id', 'text', 'post_id', 'user_id', 'created_at'],
         include: {
           model: User,
           attributes: ['username']
@@ -76,7 +76,8 @@ router.post('/', withAuth, (req, res) => {
   Post.create({
     title: req.body.title,
     post_content: req.body.post_content,
-    user_id: req.session.user_id
+    user_id: req.session.user_id,
+    category_id: req.body.category_id
   })
     .then(dbPostData => res.json(dbPostData))
     .catch(err => {
@@ -110,24 +111,34 @@ router.put('/:id', withAuth, (req, res) => {
     });
 });
 
-router.delete('/:id', withAuth, (req, res) => {
-  console.log('id', req.params.id);
-  Post.destroy({
-    where: {
-      id: req.params.id
-    }
-  })
-    .then(dbPostData => {
-      if (!dbPostData) {
-        res.status(404).json({ message: 'No post found with this id' });
-        return;
+router.delete('/:id', withAuth, async (req, res) => {
+  try {
+    const postId = req.params.id;
+
+    // Delete the comments associated with the post
+    await Comment.destroy({
+      where: {
+        post_id: postId
       }
-      res.json(dbPostData);
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
     });
+
+    // Delete the post
+    const deletedPost = await Post.destroy({
+      where: {
+        id: postId
+      }
+    });
+
+    if (!deletedPost) {
+      res.status(404).json({ message: 'No post found with this id' });
+      return;
+    }
+
+    res.json({ message: 'Post deleted successfully' });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: 'Failed to delete post' });
+  }
 });
 
 module.exports = router;

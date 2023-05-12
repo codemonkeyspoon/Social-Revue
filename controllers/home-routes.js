@@ -1,34 +1,73 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Post, User, Comment, Score } = require('../models');
+const { Post, User, Comment, Score, Category } = require('../models');
 
-router.get('/', (req, res) => {
-  Post.findAll({
-    attributes: ['id', 'title', 'created_at', 'post_content',[sequelize.literal('(SELECT SUM(score) FROM score WHERE score.post_id = Post.id)'), 'total_score'],],
-    include: [
-      {
-        model: User,
-        attributes: ['username'],
-      },
-      {
-        model: Score,
-        attributes: ['score'],
-      },
-    ],
-    order: [[sequelize.literal('total_score'), 'DESC']],
-  })
-    .then(dbPostData => {
-      const posts = dbPostData.map(post => post.get({ plain: true }));
+router.get('/', async (req, res) => {
+  try {
+    const categoryParam = req.query.category; // Get the category query parameter
+    let categoryFilter = {}; // Define an empty object to store the category filter
 
-      res.render('homepage', {
-        posts,
-        loggedIn: req.session.loggedIn,
-      });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
+    if (categoryParam && categoryParam !== 'all') {
+      categoryFilter = { id: categoryParam }; // Set the category filter if a specific category ID is provided
+    }
+
+    const [dbPostData, dbCategoryData] = await Promise.all([
+      Post.findAll({
+        attributes: [
+          'id',
+          'title',
+          'created_at',
+          'post_content',
+          [sequelize.literal('(SELECT SUM(score) FROM score WHERE score.post_id = Post.id)'), 'total_score'],
+        ],
+        include: [
+          {
+            model: User,
+            attributes: ['username'],
+          },
+          {
+            model: Score,
+            attributes: ['score'],
+          },
+          {
+            model: Category,
+            attributes: ['category_name'],
+            where: categoryFilter, // Apply the category filter to the Category model include
+          },
+          {
+            model: Comment,
+            attributes: ['id', 'text', 'post_id', 'user_id', 'created_at'],
+            include: {
+              model: User,
+              attributes: ['username'],
+            },
+          },
+        ],
+        order: [[sequelize.literal('total_score'), 'DESC']],
+      }),
+      Category.findAll({
+        attributes: ['category_name', 'id'],
+        include: [
+          {
+            model: Post,
+            attributes: ['id'],
+          },
+        ],
+      })
+    ]);
+
+    const posts = dbPostData.map((post) => post.get({ plain: true }));
+    const categories = dbCategoryData.map((category) => category.get({ plain: true }));
+
+    res.render('homepage', {
+      posts,
+      loggedIn: req.session.loggedIn,
+      categories,
     });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
 
 router.get('/post/:id', (req, res) => {

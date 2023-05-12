@@ -2,18 +2,27 @@
   <h2>Create New Post</h2>
 
   <form class="new-post-form">
-    <div>
-      <label for="post-title">Title</label>
-      <input type="text" id="post-title" name="post-title" />
-    </div>
-    <div>
-      <label for="post-content">Post Content</label>
-      <textarea name="post-content"></textarea>
-    </div>
-    <button type="submit" class="btn">Create</button>
-  </form>
+          <section class="modal-form">
+          <div class="modal-sections" id="m-category">
+            <select name="category_id" id="category-select">
+              <option value="">--Please choose a Category--</option>
+              {{#each categories}}
+                <option value="{{id}}">{{category_name}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="modal-sections" id="m-title">
+            <label for="post-title">Title</label>
+            <input type="text" id="post-title" name="post-title" />
+          </div>
+          <div class="modal-sections" id ="m-label">
+            <label for="post-content">Post Content</label>
+            <textarea name="post-content"></textarea>
+          </div>
+          <button type="submit" class="btn">Create</button>
+          </section>
+        </form>
 </section>
-
 {{#if posts.length}}
 <section>
   <h2>Your Posts</h2>
@@ -21,11 +30,9 @@
     {{#each posts as |post|}}
     <li>
       {{> post-info post}}
-      <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit Post</a>
     </li>
+    <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit Post</a>
     {{/each}}
   </ol>
 </section>
 {{/if}}
-
-<script src="/javascripts/add-post.js"></script>
