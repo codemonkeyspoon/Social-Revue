@@ -24,7 +24,7 @@ The Socials Revue App is a web application that allows users to create an accoun
 * **Express-Handlebars**
 * **DotEnv**
 # Credits
-This application was developed by Copyright (c) 2023, Team: **Slo-Bots**. @codemonkeyspoon @AlexC3105 @trentstanley92 @tylervanderstaay @CollJH2K
+This application was developed by Copyright (c) 2023, Team: **Slo-Bots**. @codemonkeyspoon @AlexC3105 @trentstanley92 @tylervanderstaay @CoolJH2K
 If you have any questions or feedback, please contact Social-Revue@email.com.
 
 # License

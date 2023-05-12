@@ -19,9 +19,10 @@
     "hbs": "^4.2.0",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
-    "mysql2": "^2.2.5",
+    "mysql2": "^2.3.3",
     "sequelize": "^6.31.1",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "uuidv4": "^6.2.13"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0"
