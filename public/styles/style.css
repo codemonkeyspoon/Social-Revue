@@ -24,6 +24,7 @@ body {
     border-color: var(--lightgray);
     color: var(--wheat);
     margin: 0;
+    background-color: #1b2126;
     background-image: url(/images/cool-background.jpg);
     background-size: cover;
     background-position: center;
