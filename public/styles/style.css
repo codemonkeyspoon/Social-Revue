@@ -10,14 +10,21 @@
     --darkblue: #0b77be;
     --red: #E83151;
     --green: #598B2C;
-    --firered: #f50713;
+    --firered: #b;
     --purple: #730dd9;
     --pink: #dd14f7;
-  }
+}
+
+* {
+    box-sizing: border-box;
+    color: black;
+}
 
 body {
     border-color: var(--lightgray);
     color: var(--wheat);
+    margin: 0;
+    background-image: ;
 }
 
 header {
@@ -28,20 +35,57 @@ header {
     justify-content: center;
     align-items: normal;
     background-color: var(--darkgray);
-    
+    width: 100%;
 }
+
 a:-webkit-any-link {
     background-color: var(--darkgray);
-    color: var(--wheat);
+    color: var(--darkblue);
     cursor: pointer;
     text-decoration: none;
     display: inherit;
+    font-weight: 400;
 }
 
+/* work area below */
+
 h1 {
+    text-align: center;
+    background-color: var(--darkblue);
+    top: 35%;
+    width: 100%;
+
+    text-shadow: 0 1px 0 hsl(0, 0%, 0%),
+        0 2px 0 hsl(0, 0%, 0%),
+        0 3px 0 hsl(180, 100%, 2%),
+        0 4px 0 hsl(160, 100%, 1%),
+        0 5px 0 hsl(165, 100%, 1%),
+        0 6px 0 hsl(180, 100%, 1%),
+        0 7px 0 hsl(180, 100%, 1%),
+        0 8px 0 hsl(170, 100%, 1%),
+
+        0 0 5px rgba(0, 0, 0, .05),
+        0 1px 3px rgba(0, 0, 0, .2),
+        0 3px 5px rgba(0, 0, 0, .2),
+        0 5px 10px rgba(0, 0, 0, .2),
+        0 10px 10px rgba(0, 0, 0, .2),
+        0 20px 20px rgba(0, 0, 0, .3);
+}
+
+/* h1 {
     margin: 25px 0;
     text-align: center;
     background-color: var(--darkblue);
+}
+/* work area above */
+.wrapper {
+    width: 100%;
+    min-height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--lightgray);
 }
 
 .login-form {
@@ -60,7 +104,6 @@ h1 {
 
 ul {
     display: flex;
-    list-style-type: disc;
     margin-block-start: 1em;
     margin-block-end: 1em;
     margin-inline-start: 0px;
@@ -68,19 +111,18 @@ ul {
     padding-inline-start: 40px;
     justify-content: space-evenly;
     background-color: var(--darkgray);
-    color: var(--wheat);
+    color: var(--darkgray);
+    color: var(--lightgray);
 }
 
 footer {
-    position: sticky;
-    width: auto;
     background-color: var(--darkgray);
-    color: var(--wheat);
+    color: var(--darkgray);
+    position: sticky;
     margin-top: 0;
     padding: 0.5vh;
+    width: 100%;
 }
-
-
 
 /* Universal selector */
 /* * {
@@ -173,7 +215,7 @@ button {
     border-style: outset;
     border-radius: 5px;
     justify-content: center;
-    
+
 }
 
 input#email-login {
@@ -232,12 +274,16 @@ input#password-signup {
 
 
 }
+
 .a {
     justify-content: center;
 }
 
 nav {
-    display: inline;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: baseline;
 }
 
 
@@ -251,8 +297,172 @@ form {
     display: flex;
     margin-top: 0em;
     margin-block-end: 1em;
+    justify-content: center;
+    margin-top: 60px;
 }
+
 div {
     display: inline;
     align-items: center;
+}
+
+
+/*modal*/
+/* The Modal (background) */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* like buttons */
+/* .post-like-button, .comment-like-button{
+    background-image: url(../images/up.png);
+    width: 30px;
+    height:30px;
+} */
+/* end like buttons */
+
+/* Comment Form */
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px 0 5px 0;
+}
+
+.comment-form textarea {
+    width: 600px;
+}
+
+
+
+
+/* Modal Content/Box */
+.modal-content {
+    display: block;
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 10px;
+    border: 1px solid #888;
+    width: 50%;
+    /* Could be more or less, depending on screen size */
+}
+
+.modal-header {
+    height: 30px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.modal-header h2 {
+    font-size: 20px;
+    margin: 1px;
+}
+
+.modal-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    margin: 5px 0 5px 0;
+}
+
+.modal-sections {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+#post-title {
+    width: 90%;
+
+}
+
+#m-title input {
+    width: 90%;
+    min-height: 15px;
+    height: 35px;
+}
+
+#m-label textarea {
+    width: 90%;
+    min-height: 80px;
+    height: 200px;
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/*Styling for post and comment view*/
+.comments {
+    position: relative;
+    padding: 10px;
+}
+
+.comment {
+    padding: 10px;
+    padding: 10px;
+    border: black dashed 2px;
+    margin: 15px;
+}
+
+.comment:nth-child(odd) {
+    background-color: #312314;
+}
+
+#post-title {
+    font-size: xx-large;
+}
+
+.post {
+    border: black solid 2px;
+    margin-top: 30px;
+}
+
+ol>li:nth-child(even) {
+    background-color: #312314;
+}
+
+#post-content {
+    font-size: larger;
+}
+
+h4 {
+    margin: 0;
+    font-style: italic;
 }
