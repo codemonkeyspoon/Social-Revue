@@ -69,11 +69,13 @@
     <!-- Modal content -->
     <div class="modal-content">
       <span class="close">&times;</span>
-      <section>
+      <section class="modal-header">
         <h2>Create New Post</h2>
-
+      </section>
+      
         <form class="new-post-form">
-          <div>
+          <section class="modal-form">
+          <div class="modal-sections" id="m-category">
             <select name="category_id" id="category-select">
               <option value="">--Please choose a Category--</option>
               {{#each categories}}
@@ -81,17 +83,18 @@
               {{/each}}
             </select>
           </div>
-          <div>
+          <div class="modal-sections" id="m-title">
             <label for="post-title">Title</label>
             <input type="text" id="post-title" name="post-title" />
           </div>
-          <div>
+          <div class="modal-sections" id ="m-label">
             <label for="post-content">Post Content</label>
             <textarea name="post-content"></textarea>
           </div>
           <button type="submit" class="btn">Create</button>
+          </section>
         </form>
-      </section>
+      
     </div>
 
   </div>
