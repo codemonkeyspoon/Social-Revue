@@ -179,21 +179,17 @@ a:link {
 
 
 button {
-    appearance: auto;
-    text-rendering: auto;
-    color: var(--wheat);
-    text-indent: 1px;
-    display: inline-flex;
+
+    width: 25px;
+    height: 25px;
+    display: flex;
     text-align: center;
     cursor: pointer;
-    box-sizing: border-box;
-    background-color: var(--gray);
-    padding: 3px 10px;
-    border-width: 2px;
-    border-style: outset;
-    border-radius: 5px;
+    margin: .5em;
+    align-content:center;
     justify-content: center;
-
+    background-color: transparent;
+    border:0
 }
 
 input#email-login {
@@ -308,11 +304,11 @@ div {
     /* Black w/ opacity */
 }
 /* like buttons */
-/* .post-like-button, .comment-like-button{
-    background-image: url(../images/up.png);
-    width: 30px;
-    height:30px;
-} */
+
+.upvote, .downvote{
+    width:25px;
+    height:25px;
+}
 /* end like buttons */
 
 /* Comment Form */
@@ -326,7 +322,6 @@ div {
 .comment-form textarea{
     width:600px;
 }
-
 
 
 
@@ -400,13 +395,11 @@ div {
     text-decoration: none;
     cursor: pointer;
 }
-
 /*Styling for post and comment view*/
   .comments {
     position: relative;
     padding: 10px;
   }
-
   .comment {
     padding: 10px;
     padding: 10px;
@@ -421,8 +414,18 @@ div {
   #post-title {
     font-size: xx-large;
   }
-
+  .votebuttons{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-items:center;
+  }
+.score{
+    font-size:15px;
+}
   .post {
+    display:flex;
+    flex-direction:row;
     border: black solid 2px;
     margin-top: 30px;
   }
