@@ -403,6 +403,10 @@ div {
     min-height:80px;
     height:200px;
 }
+.editpost{
+    width:100%;
+    min-width:475px;
+}
 
 /* The Close Button */
 .close {
