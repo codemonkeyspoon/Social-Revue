@@ -251,6 +251,8 @@ form {
     display: flex;
     margin-top: 0em;
     margin-block-end: 1em;
+    justify-content: center;
+    margin-top: 60px;
 }
 div {
     display: inline;
@@ -313,6 +315,10 @@ div {
     margin: 15px;
   }
 
+  .comment:nth-child(odd) {
+    background-color: #312314;
+  }
+
   #post-title {
     font-size: xx-large;
   }
@@ -322,10 +328,15 @@ div {
     margin-top: 30px;
   }
 
+  ol > li:nth-child(even) {
+    background-color: #312314;
+  }
+
   #post-content {
     font-size: larger;
   }
 
   h4 {
     margin: 0;
+    font-style: italic;
   }
