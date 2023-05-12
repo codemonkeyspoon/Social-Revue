@@ -16,7 +16,7 @@
           <a href="/">Home</a>
           {{#if loggedIn}}
             <a href="/dashboard">Dashboard</a>
-            <button id="logout" class="btn-no-style">Logout</button>
+            <button id="logout" class="btn">Logout</button>
           {{else}}
             <form class="login-form">
               <div>
@@ -32,7 +32,7 @@
                 />
               </div>
               <div>
-                <button type="submit">LOGIN</button>
+                <button type="submit" class="btn">LOGIN</button>
               </div>
             </form>
 
@@ -98,4 +98,5 @@
 
   </div>
   <script src="/javascripts/modal.js"></script>
+  <script src="/javascripts/add-post.js"></script>
 </html>

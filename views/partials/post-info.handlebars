@@ -1,4 +1,4 @@
-<article class="post">
+<article class="postinfo-single">
   <div class="votebuttons">
     <button class="post-like-button" data-post-id="{{id}}">
       <img class="upvote" src="/images/up.png">
@@ -16,5 +16,7 @@
     <div class="meta">
       by {{user.username}} on {{format_date created_at}} Comments: {{comments.length}}
     </div>
+    <br>
+    <div>Main Post: {{post_content}}</div>
   </div>
 </article>

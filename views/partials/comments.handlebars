@@ -2,17 +2,17 @@
   {{#each this}}
   <section class="comment">
   <div class="votebuttons">
-    <button class="comment-like-button" data-post-id="{{id}}">
+    <button class="comment-like-button" data-comment-id="{{id}}">
       <img class="upvote" src="/images/up.png">
     </button>
     <div class="score">{{total_score}}</div>
-    <button class="comment-dislike-button" data-post-id="{{id}}">
+    <button class="comment-dislike-button" data-comment-id="{{id}}">
       <img class="downvote" src="/images/down.png">
     </button>
   </div>
   
     <div class="meta">
-      Comment by: {{user.username}} on {{format_date created_at}} Likeability {{total_score}}
+      Comment by: {{user.username}} on {{format_date created_at}}
  
     </div>
     <br>
