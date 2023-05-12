@@ -251,6 +251,8 @@ form {
     display: flex;
     margin-top: 0em;
     margin-block-end: 1em;
+    justify-content: center;
+    margin-top: 60px;
 }
 div {
     display: inline;
