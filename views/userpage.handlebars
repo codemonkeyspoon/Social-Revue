@@ -1,0 +1,23 @@
+<h2>Your Posts</h2>
+{{log "LOGGING INITIAL POST"}}
+{{log posts}}
+{{log "done logging"}}
+{{log posts.posts}}
+{{log "log 2"}}
+{{#if posts.length}}
+<section>
+    <ol>
+        {{#each posts as |user|}}
+        {{log user}}
+        {{#each user.posts as |post|}}
+        {{log "**"}}
+        {{log post}}
+        {{log "**"}}
+        <li>
+            {{> post-info post}}
+        </li>
+        {{/each}}
+        {{/each}}
+    </ol>
+</section>
+{{/if}}
