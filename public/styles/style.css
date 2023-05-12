@@ -15,9 +15,16 @@
     --pink: #dd14f7;
   }
 
+* {
+    box-sizing: border-box;
+    color: black;
+  }
+
 body {
     border-color: var(--lightgray);
     color: var(--wheat);
+    margin: 0;
+    background-image: ;
 }
 
 header {
@@ -28,6 +35,7 @@ header {
     justify-content: center;
     align-items: normal;
     background-color: var(--darkgray);
+    width: 100%;
     
 }
 a:-webkit-any-link {
@@ -42,6 +50,16 @@ h1 {
     margin: 25px 0;
     text-align: center;
     background-color: var(--darkblue);
+}
+
+.wrapper {
+    width: 100%;
+    min-height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #809688;
 }
 
 .login-form {
@@ -73,11 +91,11 @@ ul {
 
 footer {
     position: sticky;
-    width: auto;
     background-color: var(--darkgray);
     color: var(--wheat);
     margin-top: 0;
     padding: 0.5vh;
+    width: 100%;
 }
 
 
@@ -237,7 +255,10 @@ input#password-signup {
 }
 
 nav {
-    display: inline;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: baseline;
 }
 
 
@@ -304,7 +325,6 @@ div {
 /*Styling for post and comment view*/
   .comments {
     position: relative;
-    left: 45px;
     padding: 10px;
   }
 
